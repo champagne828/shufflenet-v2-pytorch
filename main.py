@@ -127,7 +127,7 @@ def main():
         ### Evaluate on validation set
         val_prec1, val_prec5 = validate(val_loader, model, criterion)
         ### Remember best prec@1 and save checkpoint
-        is_best = val_prec1 < best_prec1
+        is_best = (val_prec1 > best_prec1)
         best_prec1 = max(val_prec1, best_prec1)
         ### Save checkpoint
         model_filename = 'checkpoint_%03d.pth.tar' % epoch
@@ -185,7 +185,7 @@ def train(train_loader, model, criterion, optimizer, epoch):
                   'Prec@5 {top5.val:.3f}\t'  # ({top5.avg:.3f})'
                   'lr {lr: .4f}'.format(epoch, i, len(train_loader), batch_time=batch_time,
                                         data_time=data_time, loss=losses, top1=top1, top5=top5, lr=lr))
-    return 100. - top1.avg, 100. - top5.avg, losses.avg, running_lr
+    return top1.avg, top5.avg, losses.avg, running_lr
 
 
 def validate(val_loader, model, criterion):
@@ -219,7 +219,7 @@ def validate(val_loader, model, criterion):
                   'Prec@5 {top5.val:.3f} ({top5.avg:.3f})'.format(i, len(val_loader), batch_time=batch_time, 
                                                                   loss=losses, top1=top1, top5=top5))
     print(' * Prec@1 {top1.avg:.3f} Prec@5 {top5.avg:.3f}'.format(top1=top1, top5=top5))
-    return 100. - top1.avg, 100. - top5.avg
+    return top1.avg, top5.avg
 
 
 def load_checkpoint(args):
