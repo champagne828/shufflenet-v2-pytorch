@@ -67,7 +67,6 @@ warnings.filterwarnings("ignore")
 torch.manual_seed(args.manual_seed)
 torch.cuda.manual_seed_all(args.manual_seed)
 
-best_prec1 = 0
 
 def main():
     global args
@@ -98,6 +97,8 @@ def main():
             best_prec1 = checkpoint['best_prec1']
             model.load_state_dict(checkpoint['state_dict'])
             optimizer.load_state_dict(checkpoint['optimizer'])
+    else:
+        best_prec1 = 0
     cudnn.benchmark = True
     ### Data loading 
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
