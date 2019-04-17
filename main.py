@@ -104,7 +104,7 @@ def main():
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     if not args.evaluate:
         traindir = os.path.join(args.data, 'train')
-        train_set = datasets.ImageFolder(traindir, transforms.Compose([transforms.RandomResizedCrop(224, scale=(0.5, 1.0), ratio=(0.75, 1.33)),
+        train_set = datasets.ImageFolder(traindir, transforms.Compose([transforms.RandomResizedCrop(224, scale=(0.2, 1.0), ratio=(0.75, 1.33)),
                                                                        transforms.RandomHorizontalFlip(),
                                                                        transforms.ToTensor(), normalize]))
     valdir = os.path.join(args.data, 'val')
