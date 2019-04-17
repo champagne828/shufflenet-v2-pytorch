@@ -5,9 +5,10 @@ This project implements ShuffleNetV2 written in pytorch.
 
 ## Performance
 
-| model | Top 1 | Top 5 | Top 1 reported in paper |
-| --- | --- | --- | --- |
-| 1.0x width | 0.686 | 0.882 | 0.694 |
+| model | Top 1 | Top 5 | Top 1 reported in paper | Scale |
+| --- | --- | --- | --- | --- |
+| 1.0x width | 0.691 | 0.886 | 0.694 | (0.2, 1.0) |
+| 1.0x width | 0.686 | 0.882 | 0.694 | (0.5, 1.0) |
 
 ## Train
 
